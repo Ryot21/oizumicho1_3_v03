@@ -1,14 +1,35 @@
+// font-family(ローカル)
+@font-face {// 英文フォント01
+    font-family: "e-font01";
+    src: url("../fonts/BebasNeue-Regular.ttf") format("truetype");
+}
+@font-face {// 英文フォント02
+    font-family: "e-font02";
+    src: url("../fonts/impact.ttf") format("truetype");
+}
+@font-face {// 英文フォント03
+    font-family: "e-font03";
+    src: url("../fonts/EBGaramond-VariableFont_wght.ttf") format("truetype");
+}
+@font-face {// 明朝フォント
+    font-family: "mincho-font01";
+    src: url("../fonts/ShipporiMincho-Regular.ttf") format("truetype");
+}
+@font-face {// ゴシックフォント
+    font-family: "gothic-font01";
+    src: url("../fonts/ZenKakuGothicNew-Regular.ttf") format("truetype");
+}
 
-// font-family
-$f-mincho: shippori-mincho, sans-serif;// 明朝
-$f-gothic: source-han-sans-japanese, sans-serif;// ゴシック
-$f-cezanne: "fot-cezanne-pron", sans-serif;
-$f-01: garamond-premier-pro, serif;// Garamond Premier Pro
-$f-02: acumin-pro, sans-serif;
+$f-mincho: mincho-font01;// 明朝体01
+$f-gothic: gothic-font01;// ゴシック体01
+$f-english01: e-font01;  // 英文フォント01
+$f-english02: e-font02;  // 英文フォント02
+$f-english03: e-font03;  // 英文フォント03
 
 // font-weight
 $f-n: normal;
 $f-b: bold;
+
 
 // 基本テキスト
 h1,h2,h3,h4,h5,h6,p,a,span,label,button{
@@ -20,7 +41,7 @@ h1,h2,h3,h4,h5,h6,p,a,span,label,button{
     // text-wrap: balance;
     // word-break: auto-phrase;
 	line-height: 1.3;
-    
+
     // ボーダー
     &.b-text{
         display: inline;
@@ -48,40 +69,36 @@ h1,h2,h3,h4,h5,h6,p,a,span,label,button{
     &.-lh-2_s  {@include max(768){ line-height: 2;}}
     &.-lh-3_s  {@include max(768){ line-height: 3;}}
 
+    // 文字間隔
+    &.-ls-n{letter-spacing: normal;}
+    &.-ls-1{letter-spacing: .1rem;}
+    &.-ls-2{letter-spacing: .2rem;}
+    &.-ls-3{letter-spacing: .3rem;}
+    &.-ls-4{letter-spacing: .4rem;}
+    &.-ls-5{letter-spacing: .5rem;}
+
     // 影
     &.-shadow{filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.637)) !important;}
 
     // 折り返し禁止
     &.-ws-n{white-space: nowrap}
 
-    // 自動改行禁止
-    &.-tw-n{text-wrap: inherit !important;}
-
-
     // 太さ
     &.-b{font-weight: $f-b;}
 
-    // フォントファミリー
-    &.-f-gothic{font-family: $f-gothic;}
-    &.-f-cezan{font-family: $f-cezanne;}
-    &.-f-mincho{font-family: $f-mincho;}
-    &.-f-gara{
-        font-family: $f-01;
-        font-style: italic;
-    }
-    &.-f-acumin{
-        font-family: $f-02;
-        font-weight: bold;
-        font-style: italic;
-    }
+    // フォントファミリー(ローカルフォント)
+    &.-f-mincho01{font-family: mincho-font01;}// しっぽり
+    &.-f-gothic01{font-family: gothic-font01;}// セザンヌ
+    &.-f-En01{font-family: e-font01;}         // BebasNeue
+    &.-f-En02{font-family: e-font02;}         // impact
+    &.-f-En03{font-family: e-font03;}         // garamond
 
     // 色
-    &.-white{color: $main-color--w}
-    &.-red{color: $main-color--tel}
-    &.-color01{color: $site-color01;}
-    &.-color02{color: $site-color02;}
-    &.-color03{color: $site-color03;}
-    &.-color04{color: $site-color04;}
+    &.-white{color: $main-color--w !important;}
+    &.-color01{color: $site-color01 !important;}
+    &.-color02{color: $site-color02 !important;}
+    &.-color03{color: $site-color03 !important;}
+    &.-color04{color: $site-color04 !important;}
     &.-house_c01{color: $house-color01;}
     &.-house_c02{color: $house-color02;}
     &.-house_c03{color: $house-color03;}
@@ -90,7 +107,7 @@ h1,h2,h3,h4,h5,h6,p,a,span,label,button{
     // SOLD OUT時に使用する
     &.-grayOut{
         pointer-events: none;
-        opacity: .2;
+        opacity: .1;
         a{
             pointer-events: none;
             &::before,
@@ -109,44 +126,41 @@ html {
 h1,h2,h3,h4,h5,h6,p,a,span,label,button{
         &.s-SS{
             font-size: 1rem;
-            @include min(768){
-                font-size: clamp(1rem, 2vw, 1.2rem);
-            }
+            @include min(768){font-size: clamp(1rem, 2vw, 1.2rem);}
+            &.-s12{@include max(768){font-size: 1.2rem;}}
         }
         &.s-S{
             font-size: 1.1rem;
-            @include min(768){
-                font-size: clamp(1rem, 1.2vw, 1.5rem);
-            }
+            @include min(768){font-size: clamp(1rem, 1.2vw, 1.5rem);}
+            &.-s12{@include max(768){font-size: 1.2rem;}}
         }
         &.s-M{
             font-size: 1.2rem;
             @include min(768){font-size: clamp(1.2rem, 1.5vw, 1.6rem);}
-            &.-s12{@include max(1000){font-size: 1.2rem;}}
+            &.-s10{@include max(768){font-size: 1rem;}}
+            &.-s16{@include max(768){font-size: 1.6rem;}}
         }
         &.s-ML{
             font-size: 1.6rem;
-            @include min(768){font-size: clamp(1.6rem, 1.5vw, 2rem);}
+            @include min(768){font-size: clamp(1.6rem, 2vw, 2rem);}
             &.-s14{@include max(768){font-size: 1.4rem;}}
         }
         &.s-L{
             font-size: 1.6rem;
             @include min(768){font-size: clamp(1.6rem, 2vw, 2.2rem);}
+            &.-s12{@include max(768){font-size: 1.2rem;}}
             &.-s14{@include max(768){font-size: 1.4rem;}}
         }
         &.s-LL{
             font-size: 2.1rem;
-            // @include min(768){font-size: clamp(18px, 3vw, 32px);}
             @include min(768){font-size: clamp(1.8rem, 3vw, 3rem);}
             &.-s16{@include max(768){font-size: 1.6rem;}}
-            &.-s-Btn{
-                font-size: 1.7rem;
-                @include min(768){font-size: clamp(1.8rem, 2vw, 2.5rem);}
-            }
         }
         &.s-3L{
             font-size: 2.8rem;
             @include min(768){font-size: clamp(2.1rem, 3vw, 4.8rem);}
+            &.-s16{@include max(768){font-size: 1.6rem;}}
+            &.-s18{@include max(768){font-size: 1.8rem;}}
         }
         &.s-kome{
             font-size: 1rem;
@@ -156,15 +170,11 @@ h1,h2,h3,h4,h5,h6,p,a,span,label,button{
         }
         &.s-number{
             font-size: 1.6rem;
-            @include min(768){
-                font-size: clamp(1.6rem, 2.8vw, 5.3rem);
-            }
+            @include min(768){font-size: clamp(1.6rem, 2.8vw, 5.3rem);}
         }
         &.s-profile{
             font-size: 1.2rem;
-            @include min(768){
-                font-size: clamp(1.2rem, 2.8vw, 1.4rem);
-            }
+            @include min(768){font-size: clamp(1.2rem, 2.8vw, 1.4rem);}
         }
         // ナビゲーション関係のサイズ
         &.-s-nav{
@@ -341,7 +351,7 @@ p, span, a {
                 width: 73%;
             }
         }
-        &::after{ content: "アウトドア編"; }
+        &::after{ content: "ロケーション"; }
     }
     &.Information{
         &::before{
@@ -363,93 +373,6 @@ p, span, a {
         &::after{ content: "インフォメーション"; }
     }
 }
-
-// タイトル
-h2{
-    &.c-title-Top,
-    &.c-title-concept,
-    &.c-title-plan,
-    &.c-title-Grallery,
-    &.c-title-Location,
-    &.c-title-Shopping,
-    &.c-title-Life,
-    &.c-title-Access,
-    &.c-title-Information{
-        position: relative;
-        &::after{
-            position: absolute;
-            left: 50%;
-            bottom: -100%;
-            transform: translateX(-50%);
-            font-size: 1rem;
-            font-family: $f-mincho;
-            font-style: normal;
-            @include min(768){
-                font-size: 1.4rem;
-                bottom: -40%;
-            }
-            @include min(1000){
-                bottom: -50%;
-            }
-            @include min(1400){
-                bottom: -60%;
-            }
-        }
-    }
-    &.c-title-Location{
-        &::after{
-            content: "";
-            background: url(../images/SVG/outdoor.svg);
-            background-repeat: no-repeat;
-            width: 20%;
-            height: 100%;
-            @include min(768){
-                width: 7%;
-                height: 42%;
-            }
-        }
-    }
-    &.c-title-Shopping{
-        &::after{
-            content: "";
-            background: url(../images/SVG/Shopping.svg);
-            background-repeat: no-repeat;
-            width: 23%;
-            height: 100%;
-            @include min(768){
-                width: 7%;
-                height: 42%;
-            }
-        }
-    }
-    &.c-title-Life{
-        &::after{
-            content: "";
-            background: url(../images/SVG/life.svg);
-            background-repeat: no-repeat;
-            width: 12%;
-            height: 100%;
-            @include min(768){
-                width: 5%;
-                height: 42%;
-            }
-        }
-    }
-    &.c-title-Access{
-        &::after{
-            content: "";
-            background: url(../images/SVG/access.svg);
-            background-repeat: no-repeat;
-            width: 12%;
-            height: 100%;
-            @include min(768){
-                width: 5%;
-                height: 42%;
-            }
-        }
-    }
-}
-
 
 // span
 span{

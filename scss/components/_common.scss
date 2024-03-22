@@ -65,8 +65,11 @@
 }
 .w30{
     @include min(768){
-        width: 30% !important;
+        width: 40% !important;
         margin: auto;
+    }
+    @include min(1000){
+        width: 30% !important;
     }
 }
 

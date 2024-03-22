@@ -1,5 +1,19 @@
 // リンク関係（aタグ）
 
+  /* 右三角形 */
+  .triangle-right {
+	background: #808080;
+	clip-path: polygon(0 0, 0 100%, 100% 50%);
+  }
+  /* 共通のスタイル */
+  .triangle {
+	display: inline-block;
+  /*   background-color: #333; */
+	height: 5px;
+	width: 5px;
+  }
+
+
 .c-link{
 	&.-nav{
 		display: block;
@@ -15,14 +29,21 @@
 		border-bottom: 1px solid #00000030;
 		transition: all 0.5s;
 		&::after{
-			content: "▶";
-			color: #808080;
-			font-size: 18px;
+			content: "";
 			position: absolute;
-			top: 70%;
-			left: 95%;
+			top: 50%;
+			right: 0;
 			transform: translate(-50%, -50%);
+			margin-left: 0.5em;
+			display: inline-block;
+			border-style: solid;
+			border-width: 1em 0 1em 1.865em;
+			border-color: transparent transparent transparent #000;
+			transform: translateY(0.1em) scale(0.8) rotate(0deg);
 			transition: all .5s;
+			@include max(768){
+				top: 46%;
+			}
 		}
 		&:hover{
 			border-bottom: 1px solid #000000;
